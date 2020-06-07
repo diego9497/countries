@@ -9,7 +9,6 @@ import {
   Left,
   Right,
 } from "./styles";
-import Layout from "../Layout";
 import Link from "next/link";
 
 const CountryDetail = ({
@@ -35,7 +34,7 @@ const CountryDetail = ({
     }
   }
   return (
-    <Layout>
+    <>
       <Link href="/">
         <Back>Volver</Back>
       </Link>
@@ -85,7 +84,7 @@ const CountryDetail = ({
           </Details>
         </Info>
       </Content>
-    </Layout>
+    </>
   );
 };
 export default CountryDetail;

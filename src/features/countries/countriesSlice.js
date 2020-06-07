@@ -6,6 +6,7 @@ const countriesSlice = createSlice({
     listOfCountries: [],
     listOfCountriesByName: [],
     listOfCountriesByRegion: [],
+    currenCountry: null,
     search: "",
     region: null,
   },
@@ -42,6 +43,9 @@ const countriesSlice = createSlice({
         };
       },
     },
+    currentCountry(state, action) {
+      state.currentCountry = action.payload;
+    },
   },
 });
 
@@ -49,6 +53,7 @@ export const {
   addListOfCountries,
   filterCountriesByName,
   filterCountriesByRegion,
+  currentCountry,
 } = countriesSlice.actions;
 
 export default countriesSlice.reducer;
