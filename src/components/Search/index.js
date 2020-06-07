@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "./styles";
-import { filterCountriesByName } from "../../actions/countries";
+import { filterCountriesByName } from "../../features/countries/countriesSlice";
 import { connect } from "react-redux";
 
 const Search = ({ filterCountriesByName, search }) => {
@@ -21,11 +21,10 @@ const Search = ({ filterCountriesByName, search }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    search: state.search,
-  };
-};
+const mapStateToProps = (state) => ({
+  search: state.countries.search,
+});
+
 const mapDispatchToProps = {
   filterCountriesByName,
 };

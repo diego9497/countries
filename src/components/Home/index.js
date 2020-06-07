@@ -4,15 +4,15 @@ import Layout from "../Layout";
 import ListOfCountries from "../ListOfCountries";
 import SearchAndFilter from "../SearchAndFilter";
 
-import { setListOfCountries } from "../../actions/countries";
+import { addListOfCountries } from "../../features/countries/countriesSlice";
 import { API_URL } from "../../api";
 
-const Home = ({ listOfCountries, setListOfCountries }) => {
+const Home = ({ listOfCountries, addListOfCountries }) => {
   useEffect(() => {
     fetch(`${API_URL}/all`)
       .then((res) => res.json())
       .then((data) => {
-        setListOfCountries(data);
+        addListOfCountries(data);
       });
   }, []);
 
@@ -25,23 +25,23 @@ const Home = ({ listOfCountries, setListOfCountries }) => {
 };
 
 const mapDispatchToProps = {
-  setListOfCountries,
+  addListOfCountries,
 };
 
-const mapStateToProps = (state) => {
-  if (!state.region && state.search === "") {
+const mapStateToProps = ({ countries }) => {
+  if (!countries.region && countries.search === "") {
     return {
-      listOfCountries: state.listOfCountries,
+      listOfCountries: countries.listOfCountries,
     };
   }
-  if (state.region && state.search === "") {
+  if (countries.region && countries.search === "") {
     return {
-      listOfCountries: state.listOfCountriesByRegion,
+      listOfCountries: countries.listOfCountriesByRegion,
     };
   }
-  if (state.search !== "") {
+  if (countries.search !== "") {
     return {
-      listOfCountries: state.listOfCountriesByName,
+      listOfCountries: countries.listOfCountriesByName,
     };
   }
 };

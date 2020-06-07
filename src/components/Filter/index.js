@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Select, Actual, Options, Option } from "./styles";
 import { FaChevronDown } from "react-icons/fa";
-import { filterCountriesByRegion } from "../../actions/countries";
+import { filterCountriesByRegion } from "../../features/countries/countriesSlice";
 import { connect } from "react-redux";
-const Filter = ({ filterCountriesByRegion }) => {
-  const [current, setCurrent] = useState(null);
+const Filter = ({ filterCountriesByRegion, region }) => {
+  // const [current, setCurrent] = useState(null);
+  console.log(region);
   const [isOpen, setOpen] = useState(false);
 
   const handleChangeSelect = () => {
@@ -12,14 +13,18 @@ const Filter = ({ filterCountriesByRegion }) => {
   };
 
   const handleChangeOption = (region) => {
-    setCurrent(region);
+    // setCurrent(region);
     filterCountriesByRegion(region);
   };
+
+  useEffect(() => {
+    console.log(region);
+  });
 
   return (
     <Select onClick={handleChangeSelect}>
       <Actual>
-        {!current ? "Filter by Region " : current} <FaChevronDown />
+        {!region ? "Filter by Region " : region} <FaChevronDown />
       </Actual>
       <Options isOpen={isOpen}>
         <Option
@@ -66,4 +71,8 @@ const mapDispatchToProps = {
   filterCountriesByRegion,
 };
 
-export default connect(null, mapDispatchToProps)(Filter);
+const mapStateToProps = (state) => ({
+  region: state.countries.region,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

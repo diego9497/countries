@@ -7,12 +7,12 @@ import Header from "../Header";
 import { GlobalStyles } from "../../styles/GlobalStyles";
 import lightTheme from "../../styles/lightTheme";
 import darkTheme from "../../styles/darkTheme";
-import { changeDarkMode } from "../../actions/theme";
+import { changeTheme } from "../../features/theme/themeSlice";
 
-const Layout = ({ children, changeDarkMode, darkMode }) => {
+const Layout = ({ children, changeTheme, darkMode }) => {
   useEffect(() => {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      changeDarkMode(true);
+      changeTheme(true);
     }
   }, []);
 
@@ -32,10 +32,10 @@ const Layout = ({ children, changeDarkMode, darkMode }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ darkMode: state.darkMode });
+const mapStateToProps = (state) => ({ darkMode: state.theme.darkMode });
 
 const mapDispatchToProps = {
-  changeDarkMode,
+  changeTheme,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Layout));

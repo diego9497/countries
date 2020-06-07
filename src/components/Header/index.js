@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import { FaRegMoon, FaMoon } from "react-icons/fa";
 import { Container, Content, Dark } from "./styles";
 import { connect } from "react-redux";
-import { changeDarkMode } from "../../actions/theme";
-const Header = ({ darkMode, changeDarkMode }) => {
+import { changeTheme } from "../../features/theme/themeSlice";
+const Header = ({ darkMode, changeTheme }) => {
   return (
     <Container>
       <div className="max-width">
@@ -11,10 +11,7 @@ const Header = ({ darkMode, changeDarkMode }) => {
           <h1>Where in the world?</h1>
           <Dark>
             <input type="checkbox" id="dark-mode" />
-            <label
-              htmlFor="dark-mode"
-              onClick={() => changeDarkMode(!darkMode)}
-            >
+            <label htmlFor="dark-mode" onClick={() => changeTheme(!darkMode)}>
               {darkMode ? <FaMoon /> : <FaRegMoon />}
               <span>Dark mode</span>
             </label>
@@ -25,10 +22,10 @@ const Header = ({ darkMode, changeDarkMode }) => {
   );
 };
 
-const mapStateToProps = (state) => ({ darkMode: state.darkMode });
+const mapStateToProps = (state) => ({ darkMode: state.theme.darkMode });
 
 const mapDispatchToProps = {
-  changeDarkMode,
+  changeTheme,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(React.memo(Header));
