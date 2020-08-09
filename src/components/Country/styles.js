@@ -3,7 +3,7 @@ import { Shadow } from "../../styles/GlobalStyles";
 
 export const Container = styled.article`
   background: ${(props) => props.theme.elementBg};
-  height: 300px;
+  height: 330px;
   border-radius: 4px;
   overflow: hidden;
   font-size: 15px;
