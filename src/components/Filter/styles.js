@@ -6,7 +6,7 @@ export const Select = styled.div`
   border: none;
   appearance: none;
   outline: none;
-  width: 180px;
+  width: 200px;
   position: relative;
   font-size: 0.9em;
   font-weight: 600;

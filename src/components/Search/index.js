@@ -1,6 +1,7 @@
 import React from "react";
-import { Input } from "./styles";
+import { InputContainer, Input } from "./styles";
 import { filterCountriesByName } from "../../features/countries/countriesSlice";
+import SearchIcon from "../Icons/Search";
 import { connect } from "react-redux";
 
 const Search = ({ filterCountriesByName, search }) => {
@@ -10,14 +11,15 @@ const Search = ({ filterCountriesByName, search }) => {
   };
 
   return (
-    <div>
+    <InputContainer>
+      <SearchIcon height={20} width={20} />
       <Input
         type="text"
         value={search}
         onChange={handleChange}
-        placeholder="Buscar un pais..."
+        placeholder="Search for a country..."
       />
-    </div>
+    </InputContainer>
   );
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  Back,
+  BorderCountriesContainer,
+  BackContainer,
   Content,
   Flag,
   Info,
@@ -10,6 +11,8 @@ import {
   Right,
 } from "./styles";
 import Link from "next/link";
+import Back from "../Icons/Back";
+import BorderCountryContainer from "../../containers/BorderCountry";
 
 const CountryDetail = ({
   name,
@@ -22,6 +25,7 @@ const CountryDetail = ({
   topLevelDomain,
   currencies,
   languages,
+  borders,
 }) => {
   let listOfLanguages = "";
   if (languages) {
@@ -33,10 +37,14 @@ const CountryDetail = ({
       }
     }
   }
+  console.log("Resto de info", borders);
   return (
     <>
       <Link href="/">
-        <Back>Volver</Back>
+        <BackContainer>
+          <Back />
+          Back
+        </BackContainer>
       </Link>
       <Content>
         <Flag>
@@ -82,6 +90,16 @@ const CountryDetail = ({
               </Item>
             </Right>
           </Details>
+          <BorderCountriesContainer>
+            <p>
+              <span>Border countries:</span>
+              {borders &&
+                borders.map((border) => {
+                  console.log(border);
+                  return <BorderCountryContainer key={border} code={border} />;
+                })}
+            </p>
+          </BorderCountriesContainer>
         </Info>
       </Content>
     </>

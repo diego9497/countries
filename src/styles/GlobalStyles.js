@@ -30,6 +30,10 @@ export const GlobalStyles = createGlobalStyle`
   .max-width{
     padding: 0 60px;
     height: 100%;
+
+    @media screen and (max-width: 720px) {
+      padding: 0 20px;
+    }
   }
 
 `;
