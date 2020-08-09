@@ -37,7 +37,6 @@ const CountryDetail = ({
       }
     }
   }
-  console.log("Resto de info", borders);
   return (
     <>
       <Link href="/">
